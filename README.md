@@ -1,4 +1,4 @@
-# data-analysis-on-netflix-movies-and-tv-shows
+# Data Analysis on Netflix Movies and TV Shows
 
 ## Group 1 - Pandas
 
