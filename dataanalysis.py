@@ -268,6 +268,7 @@ class DataAnalysis(object):
         print(
             res,
             res.apply(lambda x: 'positive' if x >= +0.05 else 'negative' if x <= -0.05 else 'neutral'),
+            sep='\n',
         )
         self.df: pd.DataFrame = df
 
@@ -278,6 +279,7 @@ class DataAnalysis(object):
             res.apply(lambda x: x.polarity),
             res.apply(lambda x: 'positive' if x.polarity > 0 else 'negative' if x.polarity < 0 else 'neutral'),
             res.apply(lambda x: x.subjectivity),
+            sep='\n',
         )
         self.df: pd.DataFrame = df
 
@@ -288,6 +290,7 @@ class DataAnalysis(object):
         print(
             res.apply(lambda x: x['score']),
             res.apply(lambda x: int(x['label'].split(' ')[0])).apply(lambda x: 'positive' if x > 3 else 'negative' if x < 3 else 'neutral'),
+            sep='\n',
         )
         self.df: pd.DataFrame = df
 
