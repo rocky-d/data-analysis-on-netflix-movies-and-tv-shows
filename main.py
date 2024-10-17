@@ -1,3 +1,4 @@
+import time
 from dataanalysis import DataAnalysis
 
 
@@ -48,7 +49,7 @@ def main():
             print('3. Conduct ANOVA.')
             print('4. Conduct Kruskal-Wallis.')
             print('5. Conduct T-Test.')
-            print('6. Mann-Whitney U Test.')
+            print('6. Conduct Mann-Whitney U Test.')
             print('7. Conduct Chi-Square Test.')
             print('8. Conduct Regression.')
             print('9. Conduct sentiment analysis.')
@@ -162,6 +163,7 @@ def main():
         except Exception as e:
             print(e)
         print()
+        time.sleep(1)
     print('Goodbye.')
 
 

@@ -19,9 +19,9 @@ class DataAnalysis(object):
     def show_basics(self) -> None:
         df: pd.DataFrame = self.df
         print('=' * 5, self.title, '=' * 5)
-        print(pd.concat([df.head(2), df.tail(2)]))
+        print(pd.concat([df.head(2), df.tail(2)]).to_string())
         print('=' * 5, 'DESCRIBE', '=' * 5)
-        print(df.describe())
+        print(df.describe().to_string())
         print('=' * 5, 'INFO', '=' * 5)
         df.info()
         self.df: pd.DataFrame = df
@@ -96,7 +96,7 @@ class DataAnalysis(object):
                 'skew': skew_ls,
             }, index=df.columns)
         print('=' * 5, 'ANALYSE COLUMNS', '=' * 5)
-        print(self.df_types)
+        print(self.df_types.to_string())
         self.df: pd.DataFrame = df
 
     def sns_barplot(self, *args, **kwargs) -> None:
