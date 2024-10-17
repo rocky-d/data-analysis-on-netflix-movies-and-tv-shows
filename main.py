@@ -165,6 +165,7 @@ def main():
         print()
         time.sleep(1)
     print('Goodbye.')
+    print()
 
 
 if __name__ == '__main__':
