@@ -175,7 +175,7 @@ class DataAnalysis(object):
             print('Reject the null hypothesis:')
         else:
             print('Fail to reject the null hypothesis:')
-        print(f"There is no difference in the average '{column}' across all kinds of {groupby}.")
+        print(f"\tThere is no difference in the average '{column}' across all kinds of '{groupby}'.")
         self.df: pd.DataFrame = df
 
     def kruskal_wallis(self, column: str, groupby: str) -> None:
@@ -188,7 +188,7 @@ class DataAnalysis(object):
             print('Reject the null hypothesis:')
         else:
             print('Fail to reject the null hypothesis:')
-        print(f"There is no difference in the average '{column}' across all kinds of {groupby}.")
+        print(f"\tThere is no difference in the average '{column}' across all kinds of '{groupby}'.")
         self.df: pd.DataFrame = df
 
     def t_test(self, column: str, groupby: str) -> None:
@@ -201,7 +201,7 @@ class DataAnalysis(object):
             print('Reject the null hypothesis:')
         else:
             print('Fail to reject the null hypothesis:')
-        print(f"There is no difference in the average '{column}' across all kinds of {groupby}.")
+        print(f"\tThere is no difference in the average '{column}' across all kinds of '{groupby}'.")
         self.df: pd.DataFrame = df
 
     def mann_whitney_u_test(self, column: str, groupby: str) -> None:
@@ -214,7 +214,7 @@ class DataAnalysis(object):
             print('Reject the null hypothesis:')
         else:
             print('Fail to reject the null hypothesis:')
-        print(f"There is no difference in the average '{column}' across all kinds of {groupby}.")
+        print(f"\tThere is no difference in the average '{column}' across all kinds of '{groupby}'.")
         self.df: pd.DataFrame = df
 
     def chi_square_test(self, column: str, groupby: str) -> None:
@@ -230,7 +230,7 @@ class DataAnalysis(object):
             print('Reject the null hypothesis:')
         else:
             print('Fail to reject the null hypothesis:')
-        print(f"There is no difference in the average '{column}' across all kinds of {groupby}.")
+        print(f"\tThere is no difference in the average '{column}' across all kinds of '{groupby}'.")
         self.df: pd.DataFrame = df
 
     def regression(self, column_x, column_y) -> None:
