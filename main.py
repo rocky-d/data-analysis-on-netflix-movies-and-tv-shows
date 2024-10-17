@@ -144,7 +144,7 @@ def main():
                 col = get_col(analysis.show_text_columns())
                 print('0. Go back.')
                 print('1. Vader.')
-                print('2. Textblob.')
+                print('2. Text-Blob.')
                 print('3. Distilbert.')
                 print()
                 choice = input('Please choose (integer in [0, 3]) > ')

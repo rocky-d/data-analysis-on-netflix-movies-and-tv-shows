@@ -251,6 +251,7 @@ class DataAnalysis(object):
     def show_text_columns(self) -> list[str]:
         df: pd.DataFrame = self.df
         columns = [col for col in df.columns if pd.api.types.is_object_dtype(df[col])]
+        print('=' * 5, 'Text Columns', '=' * 5)
         print(pd.DataFrame(
             {
                 'Column Name': columns,
@@ -265,6 +266,7 @@ class DataAnalysis(object):
         df: pd.DataFrame = self.df
         vader_analyzer = SentimentIntensityAnalyzer()
         res = df[column].apply(lambda x: vader_analyzer.polarity_scores(x)['compound'])
+        print('=' * 5, 'Vader Sentiment Analysis', '=' * 5)
         print(
             res,
             res.apply(lambda x: 'positive' if x >= +0.05 else 'negative' if x <= -0.05 else 'neutral'),
@@ -275,6 +277,7 @@ class DataAnalysis(object):
     def textblob_sentiment_analysis(self, column: str) -> None:
         df: pd.DataFrame = self.df
         res = df[column].apply(lambda x: TextBlob(x).sentiment)
+        print('=' * 5, 'Text-Blob Sentiment Analysis', '=' * 5)
         print(
             res.apply(lambda x: x.polarity),
             res.apply(lambda x: 'positive' if x.polarity > 0 else 'negative' if x.polarity < 0 else 'neutral'),
@@ -287,6 +290,7 @@ class DataAnalysis(object):
         df: pd.DataFrame = self.df
         sentiment_pipeline = pipeline("sentiment-analysis", model="nlptown/bert-base-multilingual-uncased-sentiment")
         res = df[column].apply(lambda x: sentiment_pipeline(x)[0])
+        print('=' * 5, 'Distilbert Sentiment Analysis', '=' * 5)
         print(
             res.apply(lambda x: x['score']),
             res.apply(lambda x: int(x['label'].split(' ')[0])).apply(lambda x: 'positive' if x > 3 else 'negative' if x < 3 else 'neutral'),
