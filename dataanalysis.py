@@ -243,7 +243,7 @@ class DataAnalysis(object):
         print(f"P-value: {p_value}")
         print(f"Standard error: {std_err}")
         plt.figure()
-        sns.scatterplot(df[column_x], df[column_y])
+        sns.scatterplot(df, x=column_x, y=column_y)
         plt.plot(df[column_x], intercept + slope * df[column_x], 'r', label='Fitted line')
         plt.show()
         self.df: pd.DataFrame = df
