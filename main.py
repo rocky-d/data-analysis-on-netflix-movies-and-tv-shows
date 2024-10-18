@@ -53,11 +53,11 @@ def main():
             print('7. Conduct Chi-Square Test.')
             print('8. Conduct Regression.')
             print('9. Conduct sentiment analysis.')
+            print()
             choice = input('Please choose (integer in [0, 9]) > ')
             while not (choice.isdigit() and 0 <= int(choice) <= 9):
                 choice = input('Please choose (integer in [0, 9]) > ')
             choice = int(choice)
-            print()
             if 0 == choice:
                 break
             elif 1 == choice:
@@ -67,6 +67,7 @@ def main():
                 print('3. Histplot.')
                 print('4. Scatterplot.')
                 print('5. Stripplot.')
+                print()
                 choice = input('Please choose (integer in [0, 5]) > ')
                 while not (choice.isdigit() and 0 <= int(choice) <= 5):
                     choice = input('Please choose (integer in [0, 5]) > ')
