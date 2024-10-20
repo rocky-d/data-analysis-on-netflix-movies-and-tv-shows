@@ -151,7 +151,10 @@ def main():
                 col_y = get_col(analysis.df.columns)
                 analysis.regression(col_x, col_y)
             elif 9 == choice:
-                col = get_col(analysis.show_text_columns())
+                cols = analysis.show_text_columns()
+                print()
+                col = get_col(cols)
+                print()
                 print('0. Go back.')
                 print('1. Vader.')
                 print('2. Text-Blob.')
