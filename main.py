@@ -60,6 +60,7 @@ def main():
             while not (choice.isdigit() and 0 <= int(choice) <= 11):
                 choice = input('Please choose (integer in [0, 11]) > ')
             choice = int(choice)
+            print()
             if 0 == choice:
                 break
             elif 1 == choice:
@@ -75,6 +76,7 @@ def main():
                 while not (choice.isdigit() and 0 <= int(choice) <= 6):
                     choice = input('Please choose (integer in [0, 6]) > ')
                 choice = int(choice)
+                print()
                 if 0 == choice:
                     continue
                 elif 1 == choice:
@@ -160,6 +162,7 @@ def main():
                 while not (choice.isdigit() and 0 <= int(choice) <= 3):
                     choice = input('Please choose (integer in [0, 3]) > ')
                 choice = int(choice)
+                print()
                 if 0 == choice:
                     continue
                 elif 1 == choice:
@@ -177,7 +180,10 @@ def main():
                 exec(input('Code ("df" is available) > '))
                 del df
         except Exception as e:
+            print('\033[91m', end='')
+            print(f"Exception caught:")
             print(e)
+            print('\033[0m', end='')
         print()
         time.sleep(1)
     print('Goodbye.')
