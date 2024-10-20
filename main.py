@@ -188,7 +188,7 @@ def main():
             print('\033[0m', end='')
         print()
         time.sleep(1)
-    print('Goodbye.')
+    print('ヾ(￣▽￣)Bye~Bye~')
     print()
 
 
