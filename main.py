@@ -36,12 +36,12 @@ def main():
     analysis.handle_duplicates()
     print('Duplicates have been handled.')
     print()
+    analysis.analyse_columns()
+    print()
 
     while True:
         try:
             analysis.show_basics()
-            print()
-            analysis.analyse_columns()
             print()
             print('0. Exit.')
             print('1. Plot variable distribution.')
@@ -151,7 +151,6 @@ def main():
                 col_y = get_col(analysis.df.columns)
                 analysis.regression(col_x, col_y)
             elif 9 == choice:
-                print('Text column:')
                 col = get_col(analysis.show_text_columns())
                 print('0. Go back.')
                 print('1. Vader.')
