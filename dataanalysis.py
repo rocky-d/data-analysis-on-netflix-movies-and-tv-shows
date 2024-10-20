@@ -99,6 +99,23 @@ class DataAnalysis(object):
         print(self.df_types.to_string())
         self.df: pd.DataFrame = df
 
+    def plot_distribution(self, column: str) -> None:
+        df: pd.DataFrame = self.df
+        column_type = self.df_types.at[column, 'type']
+        if 'nominal'.upper() == column_type:
+            plt.figure()
+            sns.barplot(df[column].value_counts())
+        elif 'ordinal'.upper() == column_type:
+            plt.figure()
+            sns.barplot(df[column].value_counts())
+            plt.figure()
+            sns.boxplot(df[column])
+        elif 'interval_or_ratio'.upper() == column_type:
+            plt.figure()
+            sns.histplot(df[column], kde=True)
+        plt.show()
+        self.df: pd.DataFrame = df
+
     def sns_barplot(self, *args, **kwargs) -> None:
         df: pd.DataFrame = self.df
         plt.figure()
