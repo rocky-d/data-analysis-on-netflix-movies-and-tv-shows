@@ -53,10 +53,12 @@ def main():
             print('7. Conduct Chi-Square Test.')
             print('8. Conduct Regression.')
             print('9. Conduct sentiment analysis.')
+            print('10. Call eval().')
+            print('11. Call exec().')
             print()
-            choice = input('Please choose (integer in [0, 9]) > ')
-            while not (choice.isdigit() and 0 <= int(choice) <= 9):
-                choice = input('Please choose (integer in [0, 9]) > ')
+            choice = input('Please choose (integer in [0, 11]) > ')
+            while not (choice.isdigit() and 0 <= int(choice) <= 11):
+                choice = input('Please choose (integer in [0, 11]) > ')
             choice = int(choice)
             if 0 == choice:
                 break
@@ -166,6 +168,14 @@ def main():
                     analysis.textblob_sentiment_analysis(col)
                 elif 3 == choice:
                     analysis.distilbert_sentiment_analysis(col)
+            elif 10 == choice:
+                df = analysis.df
+                print(eval(input('Code ("df" is available) > ')))
+                del df
+            elif 11 == choice:
+                df = analysis.df
+                exec(input('Code ("df" is available) > '))
+                del df
         except Exception as e:
             print(e)
         print()
