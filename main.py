@@ -62,41 +62,46 @@ def main():
                 break
             elif 1 == choice:
                 print('0. Go back.')
-                print('1. Barplot.')
-                print('2. Boxplot.')
-                print('3. Histplot.')
-                print('4. Scatterplot.')
-                print('5. Stripplot.')
+                print('1. Plot distribution.')
+                print('2. Barplot.')
+                print('3. Boxplot.')
+                print('4. Histplot.')
+                print('5. Scatterplot.')
+                print('6. Stripplot.')
                 print()
-                choice = input('Please choose (integer in [0, 5]) > ')
-                while not (choice.isdigit() and 0 <= int(choice) <= 5):
-                    choice = input('Please choose (integer in [0, 5]) > ')
+                choice = input('Please choose (integer in [0, 6]) > ')
+                while not (choice.isdigit() and 0 <= int(choice) <= 6):
+                    choice = input('Please choose (integer in [0, 6]) > ')
                 choice = int(choice)
                 if 0 == choice:
-                    pass
+                    continue
                 elif 1 == choice:
-                    print('Column x:')
-                    col_x = get_col(analysis.df.columns)
-                    print('Column y:')
-                    col_y = get_col(analysis.df.columns)
-                    analysis.sns_barplot(x=col_x, y=col_y)
+                    print('Column:')
+                    col = get_col(analysis.df.columns)
+                    analysis.plot_distribution(col)
                 elif 2 == choice:
                     print('Column x:')
                     col_x = get_col(analysis.df.columns)
                     print('Column y:')
                     col_y = get_col(analysis.df.columns)
-                    analysis.sns_boxplot(x=col_x, y=col_y)
+                    analysis.sns_barplot(x=col_x, y=col_y)
                 elif 3 == choice:
+                    print('Column x:')
+                    col_x = get_col(analysis.df.columns)
+                    print('Column y:')
+                    col_y = get_col(analysis.df.columns)
+                    analysis.sns_boxplot(x=col_x, y=col_y)
+                elif 4 == choice:
                     print('Column:')
                     col = get_col(analysis.df.columns)
                     analysis.sns_histplot(x=col, kde=True)
-                elif 4 == choice:
+                elif 5 == choice:
                     print('Column x:')
                     col_x = get_col(analysis.df.columns)
                     print('Column y:')
                     col_y = get_col(analysis.df.columns)
                     analysis.sns_scatterplot(x=col_x, y=col_y)
-                elif 5 == choice:
+                elif 6 == choice:
                     print('Column x:')
                     col_x = get_col(analysis.df.columns)
                     print('Column y:')
@@ -154,7 +159,7 @@ def main():
                     choice = input('Please choose (integer in [0, 3]) > ')
                 choice = int(choice)
                 if 0 == choice:
-                    pass
+                    continue
                 elif 1 == choice:
                     analysis.vader_sentiment_analysis(col)
                 elif 2 == choice:
