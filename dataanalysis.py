@@ -156,7 +156,7 @@ class DataAnalysis(object):
     #     plt.show(*args, **kwargs)
     #     self.df: pd.DataFrame = df
 
-    def check_normality(self, column: str) -> None:
+    def check_normality(self, column: str) -> bool:
         df: pd.DataFrame = self.df
         df_col = df[column]
         if len(df_col) <= 2000:
@@ -166,8 +166,10 @@ class DataAnalysis(object):
             print('P-value:', p_value)
             if p_value < 0.05:
                 print(f"'{column}' is not normally distributed (at the {5}% significance level).")
+                norm = False
             else:
                 print(f"'{column}' is normally distributed (at the {5}% significance level).")
+                norm = True
         else:
             print('=' * 5, 'Anderson-Darling Normality Test', '=' * 5)
             anderson_result = stats.anderson(df_col, dist='norm')
@@ -176,13 +178,18 @@ class DataAnalysis(object):
                 print(f"Significance level {sig_level}%: {crit_value}")
             if anderson_result.critical_values[2] < anderson_result.statistic:
                 print(f"'{column}' is not normally distributed (at the {5}% significance level).")
+                norm = False
             else:
                 print(f"'{column}' is normally distributed (at the {5}% significance level).")
+                norm = True
         sm.qqplot(df_col, line='s')
         plt.show()
         self.df: pd.DataFrame = df
+        return norm
 
     def anova(self, column: str, groupby: str) -> None:
+        if not self.check_normality(column):
+            return
         df: pd.DataFrame = self.df
         print('=' * 5, 'ANOVA', '=' * 5)
         stat, p_value = stats.f_oneway(*(df[df[groupby] == val][column] for val in df[groupby].unique()))
@@ -196,6 +203,8 @@ class DataAnalysis(object):
         self.df: pd.DataFrame = df
 
     def kruskal_wallis(self, column: str, groupby: str) -> None:
+        if self.check_normality(column):
+            return
         df: pd.DataFrame = self.df
         print('=' * 5, 'Kruskal-Wallis', '=' * 5)
         stat, p_value = stats.kruskal(*(df[df[groupby] == val][column] for val in df[groupby].unique()))
@@ -209,6 +218,8 @@ class DataAnalysis(object):
         self.df: pd.DataFrame = df
 
     def t_test(self, column: str, groupby: str) -> None:
+        if not self.check_normality(column):
+            return
         df: pd.DataFrame = self.df
         print('=' * 5, 'T-Test', '=' * 5)
         stat, p_value = stats.ttest_ind(*(df[df[groupby] == val][column] for val in df[groupby].unique()))
@@ -222,6 +233,8 @@ class DataAnalysis(object):
         self.df: pd.DataFrame = df
 
     def mann_whitney_u_test(self, column: str, groupby: str) -> None:
+        if self.check_normality(column):
+            return
         df: pd.DataFrame = self.df
         print('=' * 5, 'Mann-Whitney U Test', '=' * 5)
         stat, p_value = stats.mannwhitneyu(*(df[df[groupby] == val][column] for val in df[groupby].unique()))
